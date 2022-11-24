@@ -5,21 +5,68 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signup</title>
+    <link rel="stylesheet" href="../static/style.css">
     <script src="../js/api.js"></script>
+
+    
 </head>
 <body>
-    <h1>회원가입 페이지</h1>
-    <form>
-        
-        <input type="text" name="username" id="username" placeholder="username">
-        <input type="email" name="email" id="email" placeholder="email">
-        <input type="phone_number" name="phone_number" id="phone_number" placeholder="phone_number">
-        <input type="address" name="address" id="address" placeholder="address">
-        <input type="password" name="password" id="password" placeholder="password">
-        <input type="password" name="passwordcheck" id="passwordcheck" placeholder="passwordcheck">
-        
-        <button type="button" onclick="handleSignin()">제출</button>
-
+    <section class="login-form">
+    <h1>SignUp</h1>
+    <form action="">
+        <div class="int-area">
+            <input type="text" name="username" id="username" autocomplete="off" required>
+            <label for="username">UserName</label>
+        </div>
+        <div class="int-area">
+            <input type="text" name="email" id="email" autocomplete="off" required>
+            <label for="email">Email</label>
+        </div>
+        <div class="int-area">
+            <input type="text" name="address" id="address" autocomplete="off" required>
+            <label for="address">Address</label>
+        </div>
+        <div class="int-area">
+            <input type="text" name="phone_number" id="phone_number" autocomplete="off" required>
+            <label for="phone_number">PhoneNumber</label>
+        </div>
+        <div class="int-area">
+            <input type="password" name="password" id="password" autocomplete="off" required>
+            <label for="password">Password</label>
+        </div>
+        <div class="int-area">
+            <input type="password" name="passwordcheck" id="passwordcheck" autocomplete="off" required>
+            <label for="passwordcheck">PasswordCheck</label>
+        </div>
+        <div class="btn-area">
+            <button type="button" id="btn" onclick="handleSignup()">회원가입</button>
+        </div>
+        <div class="btn-area2">
+            <button type="button" id="btn" onclick="location.href='login.html'">로그인하러 가기</button>
+        </div>
+    </section>
     </form>
 </body>
 </html>
+
+<script>
+    let username = document.querySelector('#username')
+    let password = document.querySelector('#password')
+    let btn = document.querySelector('#btn')
+
+    btn.addEventListener('click', () => {
+        if(username.value == "") {
+            label = username.nextElementSibling
+            label.classList.add('warning')
+            setTimeout(() => {
+                label.classList.remove('warning')
+            }, 1500)
+        } else if(password.value == "") {
+            label = password.nextElementSibling
+            label.classList.add('warning')
+            setTimeout(() => {
+                label.classList.remove('warning')
+            }, 1500)
+        }
+    })
+</script>

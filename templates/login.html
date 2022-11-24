@@ -5,18 +5,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="../static/style.css">
     <script src="../js/api.js"></script>
 </head>
 <body>
-    <h1>로그인 페이지</h1>
-    <form>
-        <input type="text" name="email" id="email" placeholder="email" />
-        <input type="password" name="password" id="password" placeholder="password" />
-        <button type="button" onclick="handleLogin()">제출</button>
-
+    <section class="login-form">
+    <h1>Login</h1>
+    <form action="">
+        <div class="int-area">
+            <input type="text" name="email" id="email" autocomplete="off" required/>
+            <label for="email">Email</label>
+        </div>
+        <div class="int-area">
+            <input type="password" name="password" id="password" autocomplete="off" required>
+            <label for="password">Password</label>
+        </div>
+        <div class="btn-area">
+            <button type="button" id="btn" onclick="handleSignin()">login</button>
+        </div>
+        <div class="btn-area2">
+            <button type="button" id="btn" onclick="location.href='signup.html'">go to signup</button>
+        </div>
+    </section>
     </form>
-
-    <button type="button" onclick="handleLogin()">로그인</button>
-    <button type="button" onclick="handleMock()">로그아웃</button>
 </body>
 </html>
+
+<script>
+    let email = document.querySelector('#email')
+    let password = document.querySelector('#password')
+    let btn = document.querySelector('#btn')
+
+    btn.addEventListener('click', () => {
+        if(email.value == "") {
+            label = email.nextElementSibling
+            label.classList.add('warning')
+            setTimeout(() => {
+                label.classList.remove('warning')
+            }, 1500)
+        } else if(password.value == "") {
+            label = password.nextElementSibling
+            label.classList.add('warning')
+            setTimeout(() => {
+                label.classList.remove('warning')
+            }, 1500)
+        }
+    })
+</script>
