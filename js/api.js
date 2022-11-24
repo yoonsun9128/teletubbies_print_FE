@@ -70,3 +70,12 @@ async function handleLogin(){
 
 
 }
+
+//#로그아웃//
+async function logout() {
+    localStorage.removeItem("access")
+    localStorage.removeItem("refresh")
+    localStorage.removeItem("payload")
+
+    window.location.replace(`${frontend_base_url}login.html`)
+}
