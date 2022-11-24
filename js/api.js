@@ -8,30 +8,22 @@ window.onload = () => {
 }
 
 // # 회원가입 //
-async function handleSignin(){
-    const username = document.getElementById("username").value
-    const email = document.getElementById("email").value
-    const password = document.getElementById("password").value
-    const passwordcheck = document.getElementById("passwordcheck").value
-    const address = document.getElementById("address").value
-    const phone_number = document.getElementById("phone_number").value
-    console.log(username, email, password, address, phone_number)
-
-    const response = await fetch(`${backend_base_url}user/signup/`, {
+async function handleSignup(){
+    const SignupData={
+        username : document.getElementById("username").value,
+        email : document.getElementById("email").value,
+        password : document.getElementById("password").value,
+        passwordcheck : document.getElementById("passwordcheck").value,
+        address : document.getElementById("address").value,
+        phone_number : document.getElementById("phone_number").value,
+    }
+    const response = await fetch(`${backend_base_url}users/signup/`, {
         headers:{
-            'content-type':'application/json',
+            Accept: "application/json",
+            'Content-type':'application/json'
         },
         method:'POST',
-        body: JSON.stringify({
-            "username":username,
-            "email":email,
-            "phone_number":phone_number,
-            "address":address,
-            "password":password,
-            "passwordcheck":passwordcheck,
-            
-            
-        })
+        body: JSON.stringify(SignupData)
     })
 
     response_json = await response.json()
