@@ -7,7 +7,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: url("bg.webp") no-repeat center;
+    background: url("../images/123123.jpg") no-repeat center;
     background-size: cover;
 }
 body::before{
@@ -91,4 +91,10 @@ body::before{
     border: none;
     border-radius: 25px;
     cursor: pointer;
+}
+.signup-div{
+    background-color: rgba(128,128,128,0.7);
+    border-radius: 60px;
+    padding: 70px;
+
 }
