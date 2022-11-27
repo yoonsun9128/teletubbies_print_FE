@@ -2,40 +2,38 @@
 const backend_base_url = 'http://127.0.0.1:8000/'
 const frontend_base_url = 'http://127.0.0.1:5500/templates/'
 
-async function GotoOptionPage(){
-    $.ajax({
-        type: 'GET',
-        url:`${backend_base_url}store/`,
-        data: {},
-        success: function(response) {
-            let postings = response
-            for (let i=0; i < postings.length; i++){
-                append_temp_html(
-                    postings[i].id,   
-                    postings[i].filter_image,
-                )
-            }
-            function append_temp_html(id, filter_image){
-                temp_html = `
+window.onload = async function GotoOptionPage(){
+    const filterData = async () => {
+        const response = await fetch(`${backend_base_url}store/`,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer' + localStorage.getItem("access")
+            },
+        })
+        return response.json();
+    }
+    filterData().then((data) => {
+        filter = data
+        console.log(filter)
+        for (let i=0; i < filter.length; i++){
+            let id = filter[i]['id']
+            let filter_image = filter[i]['filter_image']
+            console.log(filter[i]['id'])
+            console.log(filter[i]['filter_image'])
+
+            let temp_html = `
             <li>
                 <div class="products">
                     <!-- 게시글 -->
-                    <div class="filter" id="${id}" onclick="page2OrderSettingPage(this.id)">
+                    <div class="filter" id="${id}" onclick="location.href='${frontend_base_url}/templates/ordersetting.html?id=${filter_id}'">
                         <img src="${filter_image}">
                     </div>
                 </div>
             </li>
             `
-            $('#filter').append(temp_html)
-            }
         }
     })
-}; GotoOptionPage()
-
-function page2OrderSettingPage(id){
-    alert('잠시만 기다려주세요')
-    sessionStorage.setItem("id", id)
-    // window.location.replace(`${frontend_base_url}mypage.html?store=${id}`)
-    window.location.href = "./OrderSettingPage.html"
-    
+            $('#filter-box').append(temp_html)
+            console.log(filter)
 }
