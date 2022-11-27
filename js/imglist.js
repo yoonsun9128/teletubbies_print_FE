@@ -21,6 +21,7 @@ window.onload = async function ImageList(){
             let user = image[i]['user']
             let output_img = image[i]['output_img']
             let filter = image[i]['filter']
+            console.log(id)
   
 
  
@@ -39,7 +40,8 @@ window.onload = async function ImageList(){
     })
 }
 function page2detail(id){
-    localStorage.setItem('id', id)
+    localStorage.setItem('output_id', id)
     window.location.href = "./imgdetail.html"
+    console.log(id)
 
 }
