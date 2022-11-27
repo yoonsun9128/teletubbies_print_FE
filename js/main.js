@@ -20,15 +20,18 @@ window.onload = async function GotoOptionPage(){
         for (let i=0; i < filter.length; i++){
             let id = filter[i]['id']
             let filter_image = filter[i]['filter_image']
-            console.log(filter[i]['id'])
+            console.log("이고",filter[i]['id'])
             console.log(filter[i]['filter_image'])
+
+            localStorage.setItem('filter_id', id)
+            localStorage.setItem('filter_img', 'filter_image')
 
             let temp_html = `
                     <!-- 게시글 -->
-                    <div class="filter" id="${id}" onclick="location.href='${frontend_base_url}imgupload.html?id=${id}'">
+                    <div class="filter" id="${id}" onclick="location.href='${frontend_base_url}imgupload.html?id=${id}','localStorage.setItem('filter_id', id)'">
                         <img src="${backend_base_url}${filter_image}">
                     </div>
-        
+
             `
             $('#filter-box').append(temp_html)
         }

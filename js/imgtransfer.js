@@ -1,18 +1,26 @@
+
 const backend_base_url = 'http://127.0.0.1:8000/'
 
+
+const filterId = localStorage.getItem('filter_id')
+console.log(filterId)
+
+window.onload = () => {
+    getFilter();
+}
+
 async function getFilter(){
-    const response = await fetch('${backend_base_url}/store/1/',{
-        method:"GET",
+    console.log(filterId)
+    const response = await fetch('http://127.0.0.1:8000/store/${filterId}/',{
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer' + localStorage.getItem("access")
+        },
+        method:'GET',
     })
     response_json = await response.json()
     console.log(response_json)
-    return response_json
-}
 
-
-window.onload = async function loadFilter(){
-    console.log("페이지")
-    filter = await getFilter()
     console.log(filter)
     const filter_img = document.getElementById("filterImage")
 
@@ -23,29 +31,21 @@ window.onload = async function loadFilter(){
         filterPlace.appendChild(filterPicture)
         filter_img.appendChild(filterPlace)
     });
+
 }
 
- // 이미지 미리 보이게 하기
- function readImage(input) {
-    // 인풋 태그에 파일이 있는 경우
-    if(input.files && input.files[0]) {
-        // 이미지 파일인지 검사 (생략)
-        // FileReader 인스턴스 생성
-        const reader = new FileReader()
-        // 이미지가 로드가 된 경우
-        reader.onload = e => {
-            const previewImage = document.getElementById("preview-image")
-            previewImage.src = e.target.result
-        }
-        // reader가 이미지 읽도록 하기
-        reader.readAsDataURL(input.files[0])
+// 인풋이미지 미리보기
+const fileInput = document.getElementById("InputImg")
+const handleFiles = (e) => {
+    const fileReader = new FileReader()
+    const selectedFile = fileInput.files;
+    fileReader.readAsDataURL(selectedFile[0])
+    fileReader.onload = function(){
+        document.getElementById("previewImage").src = fileReader.result
     }
 }
-// input file에 change 이벤트 부여
-const inputImage = document.getElementById("input-image")
-inputImage.addEventListener("change", e => {
-     readImage(e.target)
-})
+fileInput.addEventListener("change", handleFiles)
+
 
 
 async function transferML(){
@@ -56,13 +56,13 @@ async function transferML(){
 
     FormData.append("input_img", image)
 
-    const response = await fetch ('${backend_base_url}/store/<int:filter_id>/', {
+    const response = await fetch ("${backend_base_url}store/${id}/", {
         method:"POST",
         body:FormData
     })
     if (response.status ==200){
         alert("사진 변환중")
-        window.location.replace('${backend_base_url}/store/<int:filter_id>/</int:filter_id>/order/');
+        window.location.replace("${backend_base_url}store/${id}/order/");
     }else{
         alert(response.status)
     }
