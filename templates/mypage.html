@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SimpleShop</title>
+    <meta charset="utf-8" />
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+   
+    <link rel="stylesheet" href="../static/main.css" />
+  </head>
+
+  <body>
+    <!--상단바1-->
+    <div class="navbar_top">
+      <p>
+        텔레토비 인쇄소
+      </p>
+    </div>
+    <!--상단바2-->
+    <div class="navbar">
+      <a class="logo" href="#">
+        <img src="" height="20px">
+      </a>
+      <ul>
+        <li><a href="../templates/mypage.html">Mypage</a></li>
+        <li><a href="../templates/main.html">Home</a></li>
+        <li><a href="../templates/login.html" onclick="logout()">Logout</a></li>
+      </ul>
+    </div>
+
+    <!--나의 게시글 -->
+    <h1>내가 선택한 사진</h1>
+    <div class="products" id="user_box">
+
+    </div>
+
+<script src="../js/mypage.js"></script>
