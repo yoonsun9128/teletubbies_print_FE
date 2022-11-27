@@ -1,0 +1,22 @@
+.output_img{
+    margin-top: 40px;
+    margin-right: 40px;
+    margin-left: 40px;
+    
+}
+
+.output_card{
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    border: 1px solid grey;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 0;
+    box-shadow: 10px 10px 10px 3px #F9c4c4;
+    
+}
+
+.imglist_username{
+    margin-bottom: 10px;
+}

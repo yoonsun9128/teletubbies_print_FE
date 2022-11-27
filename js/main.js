@@ -24,11 +24,12 @@ window.onload = async function GotoOptionPage(){
             console.log(filter[i]['filter_image'])
 
             localStorage.setItem('filter_id', id)
-            localStorage.setItem('filter_img', 'filter_image')
+            localStorage.setItem('filter_img', filter_image)
+            
 
             let temp_html = `
                     <!-- 게시글 -->
-                    <div class="filter" id="${id}" onclick="location.href='${frontend_base_url}imgupload.html?id=${id}','localStorage.setItem('filter_id', id)'">
+                    <div class="filter" id="${id}" onclick="page2upload(this.id)">
                         <img src="${backend_base_url}${filter_image}">
                     </div>
 
@@ -36,4 +37,10 @@ window.onload = async function GotoOptionPage(){
             $('#filter-box').append(temp_html)
         }
     })
+}
+
+function page2upload(id){
+    alert('asdasds')
+    localStorage.setItem('filter_id', id)
+    window.location.href = "./imgupload.html"
 }
