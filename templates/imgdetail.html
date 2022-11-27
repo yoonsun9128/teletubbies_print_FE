@@ -3,16 +3,55 @@
   <head>
     <title>SimpleShop</title>
     <meta charset="utf-8" />
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-   
-    <link rel="stylesheet" href="../static/imglist.css" />
-    <link rel="stylesheet" href="../static/main.css" />
-  </head>
+    <link rel="stylesheet" href="../static/imgdetail.css" />
+    <meta http-equiv="Content-Type" content="text/html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    </head>
 <body>
-    <div>asdasd</div>
-    <script src="../js/imgdetail.js"></script>
-<script> 
-</script>
-</body>
+    <script src="../js/imgdetail.js"></script><body>
+      <div class="navbar_top">
+      <p>
+          텔레토비 인쇄소
+      </p>
+      </div>
+      <div class="navbar">
+          <a class="logo" href="#">
+          <img src="images/logo.png" height="20px">
+          </a>
+          <ul>
+              <li><a href="../templates/mypage.html">Mypage</a></li>
+              <li><a href="../templates/main.html">Home</a></li>
+              <li><a href="../templates/login.html">Logout</a></li>
+          </ul>
+      </div>
+      <div style="width:100%;height:600px;position:relative;background-Color:#F2FFFF">
+          <div class="output_img">
+              <div id="output_img-box"></div>
+              
+              <script src="../js/imglist.js"></script>
+              <script src="../js/detail.js"></script>
+          </div>
+      </div>
+      <div class="reviews">
+          <div id = 'comment_list'>
+          <div id = 'comment'>
+              <div class="form-floating mb-3" id = 'comment_box'>
+                  <input type="text" class="form-control" id="input_comment" placeholder="COMMENT" >
+                  <label for="input_comment">COMMENT를 입력해주세요</label>
+                  <button type="button" class="btn btn-outline-dark" onclick="handleAddItem()">write</button>
+                  <button type="button" class="btn btn-outline-dark" id = 'edit_btn' onclick="location.href='edit_comment.html'">edit</button>
+          </div>
+      </div>
+         <!-- JQuery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </body>
+      
+
+</html>
+
