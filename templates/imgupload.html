@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/img.css" />
+    <title>Imgupload</title>
+</head>
+<body>
+    <div class="navbar_top">
+        <p>
+          텔레토비 인쇄소
+        </p>
+      </div>
+      <div class="navbar">
+        <a class="logo" href="#">
+          <img src="images/logo.png" height="20px">
+        </a>
+        <ul>
+          <li><a href="#">Mypage</a></li>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </div>
+
+      <div class="modal_window1">
+        <div class="img_upload_space" style="background: burlywood; width: 760; height: 540px; margin-top: 20px;">
+            <div style="text-align: center; padding: 210px 0;">
+                <i class="fa-solid fa-x-ray fa-4x"></i>
+                <p>필터 이미지</p>
+            </div>
+        </div>
+    </div>
+    <div class="modal_window2">
+        <div class="image-container">
+            <img style="width: 500px;" id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">
+            <input style="display: block;" type="file" id="input-image">
+        </div>
+        <div>
+        <button id="sendButton" type="button" class="fa-solid fa-forward fa-1x" style="padding: 0 100px;">공유하기</i>
+        </div>
+    </div>
+
+
+
+
+
+</body>
+<script>
+    // 이미지 미리 보이게 하기
+    function readImage(input) {
+        // 인풋 태그에 파일이 있는 경우
+        if(input.files && input.files[0]) {
+            // 이미지 파일인지 검사 (생략)
+            // FileReader 인스턴스 생성
+            const reader = new FileReader()
+            // 이미지가 로드가 된 경우
+            reader.onload = e => {
+                const previewImage = document.getElementById("preview-image")
+                previewImage.src = e.target.result
+            }
+            // reader가 이미지 읽도록 하기
+            reader.readAsDataURL(input.files[0])
+        }
+    }
+    // input file에 change 이벤트 부여
+    const inputImage = document.getElementById("input-image")
+    inputImage.addEventListener("change", e => {
+        readImage(e.target)
+    })
+
+</script>
+
+</html>
