@@ -57,7 +57,7 @@ async function handleLogin(){
 
     localStorage.setItem("access", response_json.access);
     localStorage.setItem("refresh", response_json.refresh);
-
+    if (response.status == 200) {
     
     
     const base64Url = response_json.access.split('.')[1];
@@ -67,7 +67,10 @@ async function handleLogin(){
     }).join(''));
 
     localStorage.setItem("payload", jsonPayload); 
-
+    window.location.replace(`${frontend_base_url}main.html`)
+} else {
+    alert("잘못된 로그인입니다.", response.status)
+}
 
 }
 
