@@ -23,7 +23,6 @@ window.onload = async function GotoOptionPage(){
             console.log("이고",filter[i]['id'])
             console.log(filter[i]['filter_image'])
 
-
             let temp_html = `
                     <!-- 게시글 -->
                     <div class="filter" id="${id}" onclick="page2upload(this.id)">

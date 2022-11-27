@@ -21,14 +21,14 @@ window.onload = async function ImageList(){
             let user = image[i]['user']
             let output_img = image[i]['output_img']
             let filter = image[i]['filter']
-            console.log(image[i]['id'])
-            console.log(image[i]['output_img'])
-            console.log(image[i]['user'])
-            console.log(image[i]['filter'])
+            console.log(id)
+  
+
+ 
             let temp_html = `
                     <!-- 게시글 -->
                     <div class="output_card">
-                        <div class="output_img" id="${id}" onclick="location.href='${frontend_base_url}imgdetail.html?id=${id}'">
+                        <div class="output_img" id="${id}" onclick="page2detail(this.id)">
                             <img src="${backend_base_url}${output_img}">
                         </div>
                         <div class="imglist_username">${user}</div>
@@ -38,4 +38,10 @@ window.onload = async function ImageList(){
             $('#output_img-box').append(temp_html)
         }
     })
+}
+function page2detail(id){
+    localStorage.setItem('output_id', id)
+    window.location.href = "./imgdetail.html"
+    console.log(id)
+
 }
