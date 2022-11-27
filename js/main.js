@@ -23,9 +23,6 @@ window.onload = async function GotoOptionPage(){
             console.log("이고",filter[i]['id'])
             console.log(filter[i]['filter_image'])
 
-            localStorage.setItem('filter_id', id)
-            localStorage.setItem('filter_img', filter_image)
-            
 
             let temp_html = `
                     <!-- 게시글 -->
@@ -40,7 +37,6 @@ window.onload = async function GotoOptionPage(){
 }
 
 function page2upload(id){
-    alert('asdasds')
     localStorage.setItem('filter_id', id)
     window.location.href = "./imgupload.html"
 }

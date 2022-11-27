@@ -10,7 +10,6 @@ window.onload = () => {
 }
 
 async function getFilter(){
-    console.log(filterId)
     const response = await fetch(`http://127.0.0.1:8000/store/${filterId}/`,{
         headers: {
             'Content-Type': 'application/json',
@@ -18,19 +17,18 @@ async function getFilter(){
         },
         method:'GET',
     })
-    response_json = await response.json()
-    console.log(response_json)
+    data = await response.json()
+    console.log(data)
 
-    console.log(filter)
-    const filter_img = document.getElementById("filterImage")
+    let click_image = data['filter_image']
+    console.log(data['filter_image'])
 
-    filter.forEach(filter_detail =>{
-        const filterPlace = document.createElement("idv")
-        const filterPicture = document.createElement("img")
-        filterPicture.setAttribute("src", "${backend_base_url}${data['filter_image']}")
-        filterPlace.appendChild(filterPicture)
-        filter_img.appendChild(filterPlace)
-    });
+    let temp_html = `
+    <div class="image-container">
+            <img style="width: 500px;" id="previewImage" src="${backend_base_url}${click_image}">
+    </div>
+    `
+    $('#filterImage').append(temp_html)
 
 }
 
@@ -49,20 +47,30 @@ fileInput.addEventListener("change", handleFiles)
 
 
 async function transferML(){
-    // 첫번째로 올라간 하나의 이미지 받아오기
-    // const 명화이미지도 같이 불러와야할것같음
     const image=document.getElementById("InputImg").files[0]
-    const FormData = new FormData();
+    console.log(image)
+    const formData = new FormData();
+    console.log("52",formData)
 
-    FormData.append("input_img", image)
+    formData.append('input_img', image);
+    console.log(formData.value)
 
-    const response = await fetch ("${backend_base_url}store/${id}/", {
+    for (var pair of formData.entries()) {
+        console.log(pair[0]+ ', ' + pair[1]);
+    }
+
+    const response = await fetch (`http://127.0.0.1:8000/store/${filterId}/`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer' + localStorage.getItem("access")
+        },
         method:"POST",
-        body:FormData
+        body:formData
     })
+
     if (response.status ==200){
         alert("사진 변환중")
-        window.location.replace("${backend_base_url}store/${id}/order/");
+        window.location.replace('option.html');
     }else{
         alert(response.status)
     }
