@@ -14,7 +14,6 @@ async function handleSignup(){
         email : document.getElementById("email").value,
         password : document.getElementById("password").value,
         passwordcheck : document.getElementById("passwordcheck").value,
-        address : document.getElementById("address").value,
         phone_number : document.getElementById("phone_number").value,
     }
     const response = await fetch(`${backend_base_url}users/signup/`, {
@@ -55,15 +54,16 @@ async function handleLogin(){
 
     console.log(response_json)
 
-    localStorage.setItem("access", response_json.access);
-    localStorage.setItem("refresh", response_json.refresh);
+
     if (response.status == 200) {
+        localStorage.setItem("access", response_json.access);
+        localStorage.setItem("refresh", response_json.refresh);
     
-    
-    const base64Url = response_json.access.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        const base64Url = response_json.access.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(
+            function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
 
     localStorage.setItem("payload", jsonPayload); 
@@ -82,3 +82,15 @@ async function logout() {
 
     window.location.replace(`${frontend_base_url}login.html`)
 }
+
+
+function parseJwt(token) {
+    var base64Url = localStorage.getItem("access").split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(
+        function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+    return JSON.parse(jsonPayload);
+};

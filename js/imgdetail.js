@@ -1,3 +1,4 @@
+
 const backend_base_url = 'http://127.0.0.1:8000'
 const output_id = localStorage.getItem('output_id')
 console.log(output_id)
@@ -51,11 +52,3 @@ window.onload = async function getOutputImg(){
     
   })
 }
-
-
-
-
-
-
-
-
