@@ -61,6 +61,21 @@ body {
   justify-content: center;
   border: 2px solid grey;
 }
+.team_ex{
+  margin-right: 100px;
+  border-radius: 25px;
+  
+}
+.team_ex img{
+  width: 200px;
+}
+
+.team_ex div{
+  margin-left: 20px;
+  border-top: 1px solid grey;
+
+}
+
 
 body h1{
   text-align: center;
@@ -72,6 +87,7 @@ body h1{
 }
 
 .products {
+  margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
   padding: 0;
