@@ -74,31 +74,29 @@ fileInput.addEventListener("change", handleFiles)
 // headers.append('Authorization', 'Bearer ' + localStorage.getItem("access"))
 
 async function transferML(){
-    const image=document.getElementById("InputImg").files
+    const image=document.getElementById("InputImg").files[0]
     console.log(image)
     const formData = new FormData();
     console.log("52",formData)
 
     formData.append('input_img', image);
 
-    for (var pair of formData.entries()) {
-        console.log(pair[0]+ ', ' + pair[1]);
-    }
-
     const response = await fetch (`http://127.0.0.1:8000/store/${filterId}/`, {
         headers: {
-            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + localStorage.getItem("access"),
             'Accept': 'application/json'
         },
         method:"POST",
-        body: JSON.stringify(formData)
+        body: formData
     })
-    response_json = await response.json()
+    response_json = response.json();
 
     if (response.status ==200){
-        console.log("불러오기", token)
-        window.location.replace('option.html');
+
+        console.log("불러오기", response)
+
+        window.location.replace('imglist.html');
 
     }else{
         alert("잘못된 로그인입니다.", response.status)
