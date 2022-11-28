@@ -49,6 +49,23 @@ window.onload = async function getOutputImg(){
     `
     $('#detail_img-box').append(temp1_html)
 
-    
+
   })
+}
+
+async function create_commnet(){
+    const content = document.getElementById('input_comment').value
+    console.log(content)
+
+    const response = await fetch (`http://127.0.0.1:8000/store/images/${output_id}/`,{
+        headers : {
+            'Authorization' : 'Bearer ' + localStorage.getItem('access'),
+            'content-type' : 'application/json',
+        },
+        method : 'POST',
+        body : JSON.stringify({
+            "content": content,
+        })
+    })
+    window.location.replace('imgdetail.html')
 }
